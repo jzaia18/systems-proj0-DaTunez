@@ -11,15 +11,16 @@
 
 int main(){
 
-  //Fills the list with multiples of 7 in a descending order and prints its contents
-  struct song_node *a = (struct song_node *)malloc(sizeof(struct song_node));
-  a->name = "Never gonna give you up";
-  a->artist = "Rick Astley";
+  printf("Testing add_front():\n");
+  struct song_node *a = (struct song_node *) insert_front(0, "Never gonna give you up", "Rick Astley");
   print_list(a);
+
   
   //Empties the list and prints its contents
   a = free_list(a);
   print_list(a);
 
+  
+  
   return 0;
 }
