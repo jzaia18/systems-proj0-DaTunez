@@ -1,6 +1,6 @@
-/*Piotr Milewski
+/*Team DaTunes -- Piotr Milewski & Jake Zaia
   Systems pd10
-  HW06 -- Enlist your C skillz
+  Project 00
   2017-10-13*/
 
 #include "nodeList.h"
