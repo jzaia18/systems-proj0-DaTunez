@@ -12,8 +12,8 @@
 // helper fxn to create node
 struct song_node *create_node( char *name, char *artist, struct song_node *next) {
   struct song_node *newNode = (struct song_node *)malloc(sizeof(struct song_node));
-  newNode->name = name;
-  newNode->artist = artist;
+  strcpy(newNode->name, name);
+  strcpy(newNode->artist, artist);
   newNode->next = next;
   return newNode;
 }
@@ -27,9 +27,16 @@ struct song_node *insert_front(struct song_node *list, char *name, char *artist)
 
 // Inserts a node in order (by artist name)
 struct song_node *insert_order(struct song_node *list, char *name, char *artist) {
-  while (!list->next && strcmp(artist, list->artist) < 0)
+  
+  /*
+  struct song_node *init = list;
+  while (list->next && strcmp(artist, list->artist) < 0)
     list = list->next;
-  return create_node(name, artist, list);
+  while (list->next && strcmp(name, list->name) < 0)
+    list = list->next;
+  list = create_node(name, artist, list);
+  return init;
+  */
 }
 
 

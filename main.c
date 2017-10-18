@@ -12,7 +12,13 @@
 int main(){
 
   printf("Testing add_front():\n");
-  struct song_node *a = (struct song_node *) insert_front(0, "Never gonna give you up", "Rick Astley");
+  struct song_node *a = insert_front(0, "Never gonna give you up", "Rick Astley");
+  print_list(a);
+
+  a = insert_order(a, "Together Forever", "Rick Astley");
+  print_list(a);
+
+  a = insert_order(a, "Cry For Help", "Rick Astley");
   print_list(a);
 
   

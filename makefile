@@ -11,4 +11,4 @@ run: all
 	./listo
 
 clean:
-	rm -rf *.o listo
+	rm -rf *.o *~ listo

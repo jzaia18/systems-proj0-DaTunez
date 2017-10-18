@@ -3,8 +3,8 @@
 
 //structs
 struct song_node{
-  char *name;
-  char *artist;
+  char name[256];
+  char artist[256];
   struct song_node *next;
 };
 
