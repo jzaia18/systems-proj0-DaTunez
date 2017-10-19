@@ -8,6 +8,10 @@ struct song_node{
   struct song_node *next;
 };
 
+//Helper Functions
+struct song_node *create_node(struct song_node *, char *, char *);
+int get_length(struct song_node *);
+
 //Functions
 struct song_node *insert_front(struct song_node *, char *, char *);
 struct song_node *insert_order(struct song_node *, char *, char *);
