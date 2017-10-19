@@ -36,30 +36,6 @@ struct song_node *insert_order(struct song_node *list, char *name, char *artist)
     list = list->next;
   list->next = create_node(name, artist, list->next);
   return init;
-  /*
-  if (!list || strcmp(artist, list->artist) > 0)
-    return insert_front(list, name, artist);
-  struct song_node *init;
-  init = list;
-  while (list->next && strcmp(artist, list->artist) > 0) {
-    list = list->next;
-  }
-  while (list->next && strcmp(artist, list->artist) >= 0 && strcmp(name, list->name) > 0) {
-    list = list->next;
-  }
-  struct song_node *newNode = create_node(name, artist, list->next);
-  list->next = newNode;
-  return init;
-  */
-  /*
-  struct song_node *init = list;
-  while (list->next && strcmp(artist, list->artist) < 0)
-    list = list->next;
-  while (list->next && strcmp(name, list->name) < 0)
-    list = list->next;
-  list = create_node(name, artist, list);
-  return init;
-  */
 }
 
 
