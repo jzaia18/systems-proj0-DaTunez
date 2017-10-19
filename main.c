@@ -11,22 +11,32 @@
 
 int main(){
 
-  printf("Testing add_front():\n");
+  printf("Testing insert_front():\n");
   struct song_node *a = insert_front(0, "Never gonna give you up", "Rick Astley");
   print_list(a);
 
-  a = insert_order(a, "Together Forever", "Rick Astley");
+  a = insert_front(a, "Campfire Song Song", "Spongebob");
   print_list(a);
 
-  a = insert_order(a, "Cry For Help", "Rick Astley");
-  print_list(a);
+  a = insert_front(a, "FUN Song", "Spongebob");
+  print_list(a); 
 
-  
   //Empties the list and prints its contents
   a = free_list(a);
-  print_list(a);
-
   
+  
+  printf("\nTesting insert_order():\n");
+  struct song_node *b = insert_order(0, "Never gonna give you up", "Rick Astley");
+  print_list(b);
+
+  b = insert_order(b, "Cry For Help", "Rick Astley");
+  print_list(b);
+
+  b = insert_front(b, "Campfire Song Song", "Spongebob");
+  print_list(b);
+
+  b = insert_front(b, "FUN Song", "Spongebob");
+  print_list(b); 
   
   return 0;
 }

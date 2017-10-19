@@ -27,7 +27,19 @@ struct song_node *insert_front(struct song_node *list, char *name, char *artist)
 
 // Inserts a node in order (by artist name)
 struct song_node *insert_order(struct song_node *list, char *name, char *artist) {
-  
+  if (!list || strcmp(artist, list->artist) > 0)
+    return insert_front(list, name, artist);
+  struct song_node *init;
+  init = list;
+  while (list->next && strcmp(artist, list->artist) > 0) {
+    list = list->next;
+  }
+  while (list->next && strcmp(artist, list->artist) >= 0 && strcmp(name, list->name) > 0) {
+    list = list->next;
+  }
+  struct song_node *newNode = create_node(name, artist, list->next);
+  list->next = newNode;
+  return init;
   /*
   struct song_node *init = list;
   while (list->next && strcmp(artist, list->artist) < 0)
@@ -42,12 +54,12 @@ struct song_node *insert_order(struct song_node *list, char *name, char *artist)
 
 //takes a pointer to a node struct & prints out all the data in the list
 void print_list(struct song_node *list){
-  printf("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+  printf("\nAll songs in the list:\n");
   while(list){
-    printf("\"%s\" by %s\n", list->name, list->artist);
+    printf("\t\"%s\" by %s\n", list->name, list->artist);
     list = list->next;
   }
-  printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+  printf("\n\n");
 }
 
 
