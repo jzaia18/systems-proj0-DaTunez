@@ -10,7 +10,7 @@
 #include <string.h>
 
 // helper fxn to create node
-struct song_node *create_node( char *name, char *artist, struct song_node *next) {
+struct song_node *create_node(struct song_node *next, char *name, char *artist) {
   struct song_node *newNode = (struct song_node *)malloc(sizeof(struct song_node));
   strcpy(newNode->name, name);
   strcpy(newNode->artist, artist);
@@ -18,10 +18,19 @@ struct song_node *create_node( char *name, char *artist, struct song_node *next)
   return newNode;
 }
 
+int get_length(struct song_node *list){
+  int length = 0;
+  while (list){
+    length++;
+    list = list->next;
+  }
+  return length;
+} 
+
 /*takes a pointer to an existing list & the data to be added, creates a new node & puts it at the beginning of the list
   returns a pointer to the beginning of the list*/
 struct song_node *insert_front(struct song_node *list, char *name, char *artist){  
-  return create_node(name, artist, list);
+  return create_node(list, name, artist);
 }
 
 
@@ -29,12 +38,12 @@ struct song_node *insert_front(struct song_node *list, char *name, char *artist)
 struct song_node *insert_order(struct song_node *list, char *name, char *artist) {
   struct song_node *init = list;
   if (!list || (strcmp(artist, list->artist) < 0) || (strcmp(artist, list->artist) == 0 && strcmp(name, list->name) <= 0))
-    return create_node(name, artist, list);
+    return create_node(list, name, artist);
   while (list->next && strcmp(artist, list->next->artist) > 0)
     list = list->next;
   while (list->next && strcmp(name, list->next->name) > 0)
     list = list->next;
-  list->next = create_node(name, artist, list->next);
+  list->next = create_node(list->next, name, artist);
   return init;
 }
 
@@ -49,6 +58,45 @@ void print_list(struct song_node *list){
   printf("\n\n");
 }
 
+struct song_node *find(struct song_node *list, char *name, char *artist){
+  while (list){
+    if (strcmp(name, list->name) == 0 && strcmp(artist, list->artist) == 0)
+      return list;
+    list = list->next;
+  return 0;
+}
+
+struct song_node *find_song(struct song_node *list, char *name){
+  while (list){
+    if (strcmp(name, list->name) == 0)
+      return list;
+    list = list->next;
+  return 0;
+}
+
+struct song_node *get_rand(struct song_node *list){
+  int length = get_length(list);
+  srand(time(NULL));
+  int randNum = rand() % length;
+  for (randNum; randNum >=0; randNum--){
+    list = list->next;
+  }
+  return list;
+}
+
+struct song_node *remove_song(struct song_node *list, char *name, char *artist){
+  if (strcmp(name, list->name) == 0 && strcmp(artist, list->artist) == 0){
+    return list->next;
+  struct song_node *init = list;
+  while (list->next){
+    if (strcmp(name, list->next->name) == 0 && strcmp(artist, list->next->artist) == 0){
+      list->next = list->next->next;
+      return init;
+    }
+    list->next;
+  }
+  return 0;
+}
 
 /*takes a pointer to a list as a parameter, then goes through the entire list freeing each node
   returns a pointer to the beginning of the list*/
