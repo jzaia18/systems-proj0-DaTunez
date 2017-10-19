@@ -52,16 +52,16 @@ int main(){
 
   printf("\nGetting 3 random Songs: \n");
   char i = 0;
+  struct song_node *temp = 0;
   for (;i<3;i++) {
-    struct song_node *temp = get_rand(b);
+    temp = get_rand(b);
     printf(" \"%s\" by %s\n", temp->name, temp->artist);
-  return 0;
   }
 
   printf("\nTesting remove_node: (Removing \"FUN Song\" & \"Never gonna give you up\"");
   print_list(b);
-  b = remove_node(b, "FUN Song", "Spongebob");
-  b = remove_node(b, "Never gonna give you up", "Rick Astley");
-  b = remove_node(b, "Sad Violin", "yes"); //not in the list
+  b = remove_song(b, "FUN Song", "Spongebob");
+  b = remove_song(b, "Never gonna give you up", "Rick Astley");
+  b = remove_song(b, "Sad Violin", "yes"); //not in the list
   print_list(b);
 }

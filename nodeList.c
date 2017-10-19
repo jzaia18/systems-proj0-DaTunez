@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 // helper fxn to create node
 struct song_node *create_node(struct song_node *next, char *name, char *artist) {
@@ -63,6 +64,7 @@ struct song_node *find(struct song_node *list, char *name, char *artist){
     if (strcmp(name, list->name) == 0 && strcmp(artist, list->artist) == 0)
       return list;
     list = list->next;
+  }
   return 0;
 }
 
@@ -71,21 +73,24 @@ struct song_node *find_song(struct song_node *list, char *name){
     if (strcmp(name, list->name) == 0)
       return list;
     list = list->next;
+  }
   return 0;
 }
 
 struct song_node *get_rand(struct song_node *list){
   int length = get_length(list);
   srand(time(NULL));
+  //TIME IS REMAINING CONSTANT
   int randNum = rand() % length;
-  for (randNum; randNum >=0; randNum--){
+  printf("%d\n", randNum);
+  for (; randNum >=0; randNum--){
     list = list->next;
   }
   return list;
 }
 
 struct song_node *remove_song(struct song_node *list, char *name, char *artist){
-  if (strcmp(name, list->name) == 0 && strcmp(artist, list->artist) == 0){
+  if (strcmp(name, list->name) == 0 && strcmp(artist, list->artist) == 0)
     return list->next;
   struct song_node *init = list;
   while (list->next){
