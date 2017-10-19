@@ -36,7 +36,32 @@ int main(){
   print_list(b);
 
   b = insert_order(b, "FUN Song", "Spongebob");
-  print_list(b); 
-  
+  print_list(b);
+
+  b = insert_order(b, "Sandstorm", "Darude");
+
+  printf("Attempting to locate \"FUN Song\" by Spongebob\n");
+  struct song_node *f = find(b, "FUN Song", "Spongebob");
+  printf(" Found: %s\n", f->name);
+  printf("Attempting to locate \"Never gonna give you up\"\n");
+  f = find_song(b, "Never gonna give you up");
+  printf(" Found: %s\n", f->name);
+  printf("Attempting to locate \"Sad Violin\" (Not in the list)\n");
+  f = find_song(b, "Sad Violin");
+  printf(" Found: %s\n", f->name);
+
+  printf("\nGetting 3 random Songs: \n");
+  char i = 0;
+  for (;i<3;i++) {
+    struct song_node *temp = get_rand(b);
+    printf(" \"%s\" by %s\n", temp->name, temp->artist);
   return 0;
+  }
+
+  printf("\nTesting remove_node: (Removing \"FUN Song\" & \"Never gonna give you up\"");
+  print_list(b);
+  b = remove_node(b, "FUN Song", "Spongebob");
+  b = remove_node(b, "Never gonna give you up", "Rick Astley");
+  b = remove_node(b, "Sad Violin", "yes"); //not in the list
+  print_list(b);
 }
