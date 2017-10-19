@@ -6,6 +6,12 @@ struct song_node *table[26];
 //Functions
 void add_song(char *, char *);
 struct song_node *search(char *, char *);
-
+struct song_node *search_artist(char *);
+void print_alpha(char);
+void print_artist(char *);
+void print_all();
+void shiffle(int);
+void delete_song(char *, char *);
+void delete_all();
 
 #endif

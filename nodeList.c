@@ -68,9 +68,9 @@ struct song_node *find(struct song_node *list, char *name, char *artist){
   return 0;
 }
 
-struct song_node *find_song(struct song_node *list, char *name){
+struct song_node *find_song(struct song_node *list, char *artist){
   while (list){
-    if (strcmp(name, list->name) == 0)
+    if (strcmp(artist, list->artist) == 0)
       return list;
     list = list->next;
   }
