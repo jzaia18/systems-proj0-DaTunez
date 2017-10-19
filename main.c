@@ -8,6 +8,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 int main(){
 
@@ -24,7 +25,6 @@ int main(){
   //Empties the list and prints its contents
   a = free_list(a);
   
-  
   printf("\nTesting insert_order():\n");
   struct song_node *b = insert_order(0, "Never gonna give you up", "Rick Astley");
   print_list(b);
@@ -32,10 +32,10 @@ int main(){
   b = insert_order(b, "Cry For Help", "Rick Astley");
   print_list(b);
 
-  b = insert_front(b, "Campfire Song Song", "Spongebob");
+  b = insert_order(b, "Campfire Song Song", "Spongebob");
   print_list(b);
 
-  b = insert_front(b, "FUN Song", "Spongebob");
+  b = insert_order(b, "FUN Song", "Spongebob");
   print_list(b); 
   
   return 0;
