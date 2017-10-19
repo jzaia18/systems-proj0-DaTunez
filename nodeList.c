@@ -79,28 +79,25 @@ struct song_node *find_song(struct song_node *list, char *name){
 
 struct song_node *get_rand(struct song_node *list){
   int length = get_length(list);
-  srand(time(NULL));
-  //TIME IS REMAINING CONSTANT
   int randNum = rand() % length;
-  printf("%d\n", randNum);
-  for (; randNum >=0; randNum--){
+  for (; randNum > 0; randNum--){
     list = list->next;
   }
   return list;
 }
 
 struct song_node *remove_song(struct song_node *list, char *name, char *artist){
-  if (strcmp(name, list->name) == 0 && strcmp(artist, list->artist) == 0)
+  if (strcmp(name, list->name) == 0 && strcmp(artist, list->artist) == 0) //if node is in first position, remove it
     return list->next;
-  struct song_node *init = list;
+  struct song_node *init = list; //track first node
   while (list->next){
     if (strcmp(name, list->next->name) == 0 && strcmp(artist, list->next->artist) == 0){
       list->next = list->next->next;
       return init;
     }
-    list->next;
+    list = list->next;
   }
-  return 0;
+  return init;
 }
 
 /*takes a pointer to a list as a parameter, then goes through the entire list freeing each node

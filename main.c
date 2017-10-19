@@ -12,6 +12,8 @@
 
 int main(){
 
+  srand(time(NULL));
+
   printf("Testing insert_front():\n");
   struct song_node *a = insert_front(0, "Never gonna give you up", "Rick Astley");
   print_list(a);
@@ -64,4 +66,6 @@ int main(){
   b = remove_song(b, "Never gonna give you up", "Rick Astley");
   b = remove_song(b, "Sad Violin", "yes"); //not in the list
   print_list(b);
+
+  return 0;
 }
