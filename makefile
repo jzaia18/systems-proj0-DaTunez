@@ -14,9 +14,9 @@ run: all
 	./listo
 
 clean:
-	rm -rf *.o *~ listo
+	rm -rf *.o *~ listo debugo
 
-debug: nodeList.o main.o playlist.o
+debug: nodeList.c main.c playlist.c
 	gcc -o debugo -g nodeList.c main.c playlist.c
 
 valgrind: debug

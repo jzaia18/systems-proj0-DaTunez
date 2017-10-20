@@ -108,6 +108,6 @@ void delete_song(char *name, char *artist){
 void delete_all(){
   int i = 0;
   for (; i < 26; i++){ //iterate through table[]
-    free_list(table[i]); //free index i
+    table[i] = free_list(table[i]); //free index i
   }
 }
