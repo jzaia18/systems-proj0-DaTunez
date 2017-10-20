@@ -13,7 +13,7 @@ struct song_node *search_artist(char *);
 void print_alpha(char);
 void print_artist(char *);
 void print_all();
-void shiffle(int);
+void shuffle(int);
 void delete_song(char *, char *);
 void delete_all();
 

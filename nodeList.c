@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <time.h>
+
 
 // Helper fxn to create node
 struct song_node *create_node(struct song_node *next, char *name, char *artist) {

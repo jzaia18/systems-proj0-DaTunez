@@ -10,6 +10,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 int main(){
 
@@ -92,7 +93,7 @@ int main(){
   b = remove_song(b, "Never gonna give you up", "Rick Astley");
   b = remove_song(b, "Sad Violin", "yes"); //not in the list
   print_list(b);
-
+  free_list(b);
   
   // END NODE FUNCTIONS
 
@@ -143,6 +144,7 @@ int main(){
   // Test shuffle
   printf("%sTesting shuffle%s", bar, bar);
   shuffle(10);
- 
+
+  delete_all();
   return 0;
 }
