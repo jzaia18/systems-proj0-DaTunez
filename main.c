@@ -14,10 +14,16 @@
 int main(){
 
   //initialize some stuff
+  char bar[] = "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
   srand(time(NULL));
   memset(table, 0, sizeof table);
 
-  printf("Testing insert_front():\n");
+  
+  // BEGIN NODE FUNCTIONS
+
+  
+  // Test insert_front
+  printf("\n\n\n%sTesting insert_front():%s", bar, bar);
   struct song_node *a = insert_front(0, "Never gonna give you up", "Rick Astley");
   print_list(a);
 
@@ -27,10 +33,15 @@ int main(){
   a = insert_front(a, "FUN Song", "Spongebob");
   print_list(a); 
 
-  //Empties the list and prints its contents
-  a = free_list(a);
   
-  printf("\nTesting insert_order():\n");
+  // Test free_list
+  printf("Testing free_list...");
+  a = free_list(a);
+  print_list(a); 
+
+
+  // Test insert_order
+  printf("%sTesting insert_order():%s", bar, bar);
   struct song_node *b = insert_order(0, "Never gonna give you up", "Rick Astley");
   print_list(b);
 
@@ -45,53 +56,93 @@ int main(){
 
   b = insert_order(b, "Sandstorm", "Darude");
 
-  printf("Attempting to locate \"FUN Song\" by Spongebob\n");
+
+  // Test find
+  printf("%sTesting find%s", bar, bar);
+
+  printf("\nAttempting to locate \"FUN Song\" by Spongebob\n");
   struct song_node *f = find(b, "FUN Song", "Spongebob");
-  printf(" Found: %s\n", f->name);
+  printf("   Found: %s\n", f->name);
+
   printf("Attempting to locate \"Rick Astley\"\n");
   f = find_song(b, "Rick Astley");
-  printf(" Found: %s\n", f->name);
+  printf("   Found: %s\n", f->name);
+
   printf("Attempting to locate \"Mike Oldfield\" (Not in the list)\n");
   f = find_song(b, "Mike Oldfield");
-  printf(" Found: %s\n", f->name);
+  printf("   Found: %s\n", f->name);
 
-  printf("\nGetting 3 random Songs: \n");
+  
+  // Test get_rand
+  printf("%sTesting get_rand%s", bar, bar);
+  printf("\nGetting 5 random Songs: \n");
   char i = 0;
   struct song_node *temp = 0;
-  for (;i<3;i++) {
+  for (;i<5;i++) {
     temp = get_rand(b);
-    printf(" \"%s\" by %s\n", temp->name, temp->artist);
+    printf("   \"%s\" by %s\n", temp->name, temp->artist);
   }
 
-  printf("\nTesting remove_node: (Removing \"FUN Song\" & \"Never gonna give you up\"");
+
+  // Test remove_node
+  printf("%sTesting remove_node%s", bar, bar);
+  printf("\nRemoving \"FUN Song\", \"Never gonna give you up\", and \"Sad Violin\" (not in list)");
   print_list(b);
   b = remove_song(b, "FUN Song", "Spongebob");
   b = remove_song(b, "Never gonna give you up", "Rick Astley");
   b = remove_song(b, "Sad Violin", "yes"); //not in the list
   print_list(b);
 
-  //Playlist test functions
+  
+  // END NODE FUNCTIONS
+
+  // BEGIN PLAYLIST FUNCTIONS
+
+  
+  printf("\n\nEnd of node function tests.\nBeginning of playlist function tests.\n");
+    
+  // Test add_song
+  printf("%sTesting add_song%s", bar, bar);
+  print_all();
   add_song( "Never gonna give you up", "Rick Astley");
   add_song( "Cry For Help", "Rick Astley");
   add_song( "Campfire song song", "Spongebob");
   print_all();
 
-  printf("Checking search() functionality\n");
-  temp = search( "Never gonna give you up", "Rick Astley");
-  printf("Found: %s by %s\n\n", temp->name, temp->artist);
 
-  printf("Checking search_artist() functionality\n");
-  temp = search_artist( "Rick Astley");
-  printf("Found: %s by %s\n\n", temp->name, temp->artist);
+  // Test search
+  printf("%sTesting search%s\n", bar, bar);
+  printf("Attempting to locate \"FUN Song\" by Spongebob\n");
+  f = search("FUN Song", "Spongebob");
+  printf("   Found: %s\n", f->name);
 
-  printf("Checking print_alpha functionality\n");
+  printf("\nAttempting to locate \"Never gonna give you up\" by Rick Astley\n");
+  f = search( "Never gonna give you up", "Rick Astley");
+  printf("   Found: %s\n", f->name);
+
+  printf("Checking search_artist() functionality\n\n");
+  printf("\nAttempting to locate a song by Rick Astley\n");
+  f = search_artist( "Rick Astley");
+  printf("   Found: %s\n", f->name);
+
+
+  // Test print_alpha
+  printf("%sTesting print_alpha%s\n", bar, bar);
   print_alpha('r');
+  print_alpha('s');
+  print_alpha('t');
 
-  printf("Checking print_artist functionality\n");
+
+  // Test print_artist
+  printf("%sTesting print_alpha%s", bar, bar);
   print_artist("Rick Astley");
- 
-  printf("Checking shuffle functionality\n");
-  shuffle(3);
+  print_artist("Spongebob");
+  print_artist("Mr. DW");
+
+
+  // Test shuffle
+  printf("%sTesting shuffle%s", bar, bar);
+  shuffle(10);
  
   return 0;
 }

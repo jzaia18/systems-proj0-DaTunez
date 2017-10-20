@@ -39,38 +39,63 @@ struct song_node *search_artist(char *artist){
 
 //print out all the entries under "letter"
 void print_alpha(char letter){
-  printf("Letter: %c", letter); //print out search letter
-  print_list(table[letter - 'a']);
+  printf("Letter: %c\n", letter-32); //print out search letter
+  if (table[letter - 'a']) {
+    struct song_node *currNode = table[letter-'a'];
+    while (currNode) {
+      printf("   \"%s\" by %s\n", currNode->name, currNode->artist);
+      currNode = currNode->next;
+    }
+  }
+  printf("\n");
 }
 
 //prints out all the songs of a certain artist
 void print_artist(char *artist){
-  struct song_node *p = table[indexer(artist)]; //set pointer to alphabetical index
-  p = find_song( p, artist);
-  print_list(p);
+  struct song_node *list = table[indexer(artist)]; //set pointer to alphabetical index
+  list = find_song( list, artist);
+  printf("\nAll songs by %s:\n", artist);
+  while(list){
+    printf("   \"%s\"\n", list->name);
+    list = list->next;
+  }
+  printf("\n");
 }
 
 //prints out the entire music library
 void print_all(){
+  printf("\nPrinting all songs, sorted by artist's name:\n");
   int i = 0;
   for (; i < 26; i++){ //iterate through table[]
-    printf("Letter: %c", 'a' + i); //print out search letter
-    print_list(table[i]);
+    char letter = 'a' + i;
+    if (table[i]) {
+      printf("   Artist: %c\n      ", letter-32); //print out search letter
+      struct song_node *currNode = table[i];
+      while (currNode->next) {
+	printf(" \"%s\" by %s, ", currNode->name, currNode->artist);
+	currNode = currNode->next;
+      }
+      printf(" \"%s\" by %s\n", currNode->name, currNode->artist);
+    }
   }
+  printf("\n");
 }
 
 //shuffle - print out "count" randomly chosen songs
-void shuffle(int count){
+void shuffle(int stop){
+  int count = 1;
   int randNum;
   struct song_node *p;
-  while (count){
+  printf("\nYour queue of %d random songs:\n", stop);
+  while (count<=stop){
     randNum = rand() % 26; //sets random number between 0 and 25
     if (table[randNum]){ //execute if there is a song_node at the index
-      count--;
       p = get_rand(table[randNum]); //procure random song
-      printf("%s by %s\n", p->name, p->artist);
+      printf("  %d: %s by %s\n", count, p->name, p->artist);
+      count++;
     }
-  } 
+  }
+  printf("\n");
 }
 
 //delete a song
