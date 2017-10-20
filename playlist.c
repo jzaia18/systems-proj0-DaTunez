@@ -57,7 +57,11 @@ void shuffle(int count){
   struct song_node *p;
   while (count){
     randNum = rand() % 26;
-    if (
+    if (table[randNum]){
+      count--;
+      p = get_rand(table[randNum]);
+      printf("%s by %s\n", p->name, p->artist);
+    }
   } 
 }
 

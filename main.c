@@ -91,7 +91,7 @@ int main(){
   print_artist("Rick Astley");
  
   printf("Checking shuffle functionality\n");
-  shuffle();
+  shuffle(3);
  
   return 0;
 }
