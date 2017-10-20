@@ -87,12 +87,18 @@ struct song_node *get_rand(struct song_node *list){
 }
 
 struct song_node *remove_song(struct song_node *list, char *name, char *artist){
-  if (strcmp(name, list->name) == 0 && strcmp(artist, list->artist) == 0) //if node is in first position, remove it
-    return list->next;
+  struct song_node *tmp;
+  if (strcmp(name, list->name) == 0 && strcmp(artist, list->artist) == 0){ //if node is in first position, remove it
+    tmp = list->next;
+    free(list);
+    return tmp;
+  }
   struct song_node *init = list; //track first node
   while (list->next){
     if (strcmp(name, list->next->name) == 0 && strcmp(artist, list->next->artist) == 0){
-      list->next = list->next->next;
+      tmp = list->next->next;
+      free(list->next);
+      list->next = tmp;
       return init;
     }
     list = list->next;
