@@ -9,19 +9,27 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
+
+int indexer(char *artist){
+  if ((artist[0] - 'a') < 0)
+    return artist[0] - 'A';
+  else
+    return artist[0] - 'a';
+}
 
 void add_song(char *name, char *artist){
-  struct song_node *p = table[artist[0] - 'a'];
-  table[artist[0] - 'a'] = insert_order(p, name, artist);
+  struct song_node *p = table[indexer(artist)];
+  table[indexer(artist)] = insert_order(p, name, artist);
 }
 
 struct song_node *search(char *name, char *artist){
-  struct song_node *p = table[artist[0] - 'a'];
+  struct song_node *p = table[indexer(artist)];
   return find( p, name, artist);
 }
 
 struct song_node *search_artist(char *artist){
-  struct song_node *p = table[artist[0] - 'a'];
+  struct song_node *p = table[indexer(artist)];
   return find_song( p, artist);
 }
 
@@ -31,7 +39,7 @@ void print_alpha(char letter){
 }
 
 void print_artist(char *artist){
-  struct song_node *p = table[artist[0] - 'a'];
+  struct song_node *p = table[indexer(artist)];
   p = find_song( p, artist);
   print_list(p);
 }
@@ -45,7 +53,12 @@ void print_all(){
 }
 
 void shuffle(int count){
-
+  int randNum;
+  struct song_node *p;
+  while (count){
+    randNum = rand() % 26;
+    if (
+  } 
 }
 
 void delete_song(char *name, char *artist){
@@ -55,4 +68,3 @@ void delete_song(char *name, char *artist){
 void delete_all(){
 
 }
-

@@ -13,44 +13,46 @@
 
 int main(){
 
+  //initialize some stuff
   srand(time(NULL));
+  memset(table, 0, sizeof table);
 
   printf("Testing insert_front():\n");
-  struct song_node *a = insert_front(0, "never gonna give you up", "rick astley");
+  struct song_node *a = insert_front(0, "Never gonna give you up", "Rick Astley");
   print_list(a);
 
-  a = insert_front(a, "campfire song song", "spongebob");
+  a = insert_front(a, "Campfire song song", "Spongebob");
   print_list(a);
 
-  a = insert_front(a, "fun song", "spongebob");
+  a = insert_front(a, "FUN Song", "Spongebob");
   print_list(a); 
 
   //Empties the list and prints its contents
   a = free_list(a);
   
   printf("\nTesting insert_order():\n");
-  struct song_node *b = insert_order(0, "never gonna give you up", "rick astley");
+  struct song_node *b = insert_order(0, "Never gonna give you up", "Rick Astley");
   print_list(b);
 
-  b = insert_order(b, "cry for help", "rick astley");
+  b = insert_order(b, "Cry For Help", "Rick Astley");
   print_list(b);
 
-  b = insert_order(b, "campfire cong cong", "spongebob");
+  b = insert_order(b, "Campfire song song", "Spongebob");
   print_list(b);
 
-  b = insert_order(b, "fun song", "spongebob");
+  b = insert_order(b, "FUN Song", "Spongebob");
   print_list(b);
 
-  b = insert_order(b, "sandstorm", "darude");
+  b = insert_order(b, "Sandstorm", "Darude");
 
-  printf("Attempting to locate \"fun song\" by spongebob\n");
-  struct song_node *f = find(b, "fun song", "spongebob");
+  printf("Attempting to locate \"FUN Song\" by Spongebob\n");
+  struct song_node *f = find(b, "FUN Song", "Spongebob");
   printf(" Found: %s\n", f->name);
-  printf("Attempting to locate \"never gonna give you up\"\n");
-  f = find_song(b, "rick astley");
+  printf("Attempting to locate \"Rick Astley\"\n");
+  f = find_song(b, "Rick Astley");
   printf(" Found: %s\n", f->name);
-  printf("Attempting to locate \"sad violin\" (Not in the list)\n");
-  f = find_song(b, "mike oldfield");
+  printf("Attempting to locate \"Mike Oldfield\" (Not in the list)\n");
+  f = find_song(b, "Mike Oldfield");
   printf(" Found: %s\n", f->name);
 
   printf("\nGetting 3 random Songs: \n");
@@ -61,30 +63,35 @@ int main(){
     printf(" \"%s\" by %s\n", temp->name, temp->artist);
   }
 
-  printf("\nTesting remove_node: (Removing \"fun song\" & \"never gonna give you up\"");
+  printf("\nTesting remove_node: (Removing \"FUN Song\" & \"Never gonna give you up\"");
   print_list(b);
-  b = remove_song(b, "fun song", "spongebob");
-  b = remove_song(b, "never gonna give you up", "rick astley");
-  b = remove_song(b, "sad violin", "yes"); //not in the list
+  b = remove_song(b, "FUN Song", "Spongebob");
+  b = remove_song(b, "Never gonna give you up", "Rick Astley");
+  b = remove_song(b, "Sad Violin", "yes"); //not in the list
   print_list(b);
 
   //Playlist test functions
-  add_song( "never gonna give you up", "rick astley");
+  add_song( "Never gonna give you up", "Rick Astley");
+  add_song( "Cry For Help", "Rick Astley");
+  add_song( "Campfire song song", "Spongebob");
   print_all();
 
   printf("Checking search() functionality\n");
-  temp = search( "never gonna give you up", "rick astley");
+  temp = search( "Never gonna give you up", "Rick Astley");
   printf("Found: %s by %s\n\n", temp->name, temp->artist);
 
   printf("Checking search_artist() functionality\n");
-  temp = search_artist( "rick astley");
+  temp = search_artist( "Rick Astley");
   printf("Found: %s by %s\n\n", temp->name, temp->artist);
 
   printf("Checking print_alpha functionality\n");
   print_alpha('r');
 
   printf("Checking print_artist functionality\n");
-  print_artist("rick astley");
-  
+  print_artist("Rick Astley");
+ 
+  printf("Checking shuffle functionality\n");
+  shuffle();
+ 
   return 0;
 }

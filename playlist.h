@@ -3,6 +3,9 @@
 
 struct song_node *table[26];
 
+//Helper Functions
+int indexer(char *);
+
 //Functions
 void add_song(char *, char *);
 struct song_node *search(char *, char *);
